@@ -28,7 +28,7 @@ def userExists(idUsuario):
             'idUsuario':  idUsuario# Replace with the user ID you want to check
         }
     }
-    response = requests.post("http://localhost:5000/graphql", json=query)
+    response = requests.post("https://web-production-b8ea.up.railway.app/graphql", json=query)
     data = response.json()
     if 'data' in data:
         if(data['data']['usuarios']):
@@ -61,7 +61,7 @@ def createUser(idUsuario, nombre, apellido, email, imagen):
                 'rol': '2',
             }
         }
-    requests.post("http://localhost:5000/graphql", json=createUserQuery)
+    requests.post("https://web-production-b8ea.up.railway.app/graphql", json=createUserQuery)
 
 def createSesion(idUsuario):
     sesionId = str(uuid.uuid4())
@@ -81,7 +81,7 @@ def createSesion(idUsuario):
             'idUsuario': idUsuario,
         }
     }
-    requests.post("http://localhost:5000/graphql", json=createSesionQuery)
+    requests.post("https://web-production-b8ea.up.railway.app/graphql", json=createSesionQuery)
     return sesionId
 
 def deleteSesion(sesionId):
@@ -99,7 +99,7 @@ def deleteSesion(sesionId):
             'idSesion': sesionId
         }
     }
-    return requests.post("http://localhost:5000/graphql", json=deleteSesionQuery)
+    return requests.post("https://web-production-b8ea.up.railway.app/graphql", json=deleteSesionQuery)
 
 @app.route('/validate', methods=['POST']) # @ decorador
 def validateGoogle():
