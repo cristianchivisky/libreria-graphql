@@ -112,7 +112,7 @@ def validateGoogle():
                             data={"code": code,
                                     "client_id": os.environ.get('GOOGLE_CLIENT_ID'),
                                     "client_secret": os.environ.get('GOOGLE_CLIENT_SECRET'),
-                                    "redirect_uri": "http://localhost:3000",
+                                    "redirect_uri": "https://libreria-frontend.vercel.app/",
                                     "grant_type": "authorization_code"}
                                 )
     if(Gresponse.status_code != 200): return Gresponse.json(), 401
@@ -138,7 +138,7 @@ def validateMicrosoft():
                             data={"code": code,
                                     "client_id": os.environ.get('MICROSOFT_CLIENT_ID'),
                                     "client_secret": os.environ.get('MICROSOFT_CLIENT_SECRET'),
-                                    "redirect_uri": "http://localhost:3000/ingresar",
+                                    "redirect_uri": "https://libreria-frontend.vercel.app/ingresar",
                                     "grant_type": "authorization_code",
                                     "scope": "user.read"}
                                 )
