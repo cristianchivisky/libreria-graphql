@@ -4,16 +4,24 @@ from flask import request
 import requests
 import uuid
 import base64
+
+from flask import (Flask)
+from flask_cors import CORS
+from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 import os
 
 # Cargar variables de entorno desde el archivo .env
 load_dotenv()
 
-from api_config import (
-    app,
-    db
-)
+
+app = Flask('MyApp')
+CORS(app)
+
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL')
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+db = SQLAlchemy(app)
 
 def userExists(idUsuario):
     query = {
@@ -169,5 +177,5 @@ def userLogout():
 def index():
     return 'Hola Mundo desde Flask'
 
-#if __name__ == '__main__':
- #   app.run(host='localhost', port=5000, debug=True)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000, debug=True)
